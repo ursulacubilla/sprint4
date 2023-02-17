@@ -45,31 +45,37 @@ function orderAlphabetically(array) {
   
 
 // Exercise 5: Order by year, ascending
-function orderByYear() {
-  
-  let orderMoviesForYear = movies.sort();
+function orderByYear(array) {
+  let getYear = array.map(year => year);
 
-  // (a, b) => a.year > b.year
-  let getYear = orderMoviesForYear.flat();
-  
-  let newOrderYear = getYear.sort();
+  let orderMoviesForYear = getYear.sort((a, b) => {
+    if(a.year === b.year) {
+      if(a.title > b.title){
+        return 1;
+      } else{
+        return -1;
+      }
+    }
+    return a.year - b.year;
+  });
 
-
-  console.log("EXERCICE 5 ->", newOrderYear);
-  return newOrderYear;
-
+  console.log("EXERCICE 5 ->", orderMoviesForYear);
+  return orderMoviesForYear;
 }
 
 // Exercise 6: Calculate the average of the movies in a category
-function moviesAverageByCategory(array) {
-  // let getGenre =  array.map(index => index.genre);
+function moviesAverageByCategory(array, category) {
 
-  // let movieAverage = moviesAverageOfDirector(array, director);
-  // let getGenreScore = getGenre.map(index => index.score);
+  // let getGenre =  array.filter(movieGenre => movieGenre.genre);
+
+  // let averageDirector = moviesAverageOfDirector(array, director);
+
+
+  // // let reduceGenre = getGenreScore.reduce((valorAnterior, valorActual) => valorAnterior + valorActual);
   
 
-  // console.log("EXERCICE 6 ->", movieAverage);
-  // return getGenreScore;
+  // console.log("EXERCICE 6 ->", averageDirector);
+  // return averageDirector;
 }
 
 // Exercise 7: Modify the duration of movies to minutes
