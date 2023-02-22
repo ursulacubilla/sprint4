@@ -16,8 +16,16 @@ function getMoviesFromDirector(array, director) {
 
 // Exercise 3: Calculate the average of the films of a given director.
 function moviesAverageOfDirector(array, director) {
-  let getDirector = getMoviesFromDirector(array, director);
-  let valorScore = getDirector.map(getScore => getScore.score);
+
+  let movies = array;
+  if(director){
+    movies = getMoviesFromDirector(array, director);
+  }
+  let valorScore = movies.map(getScore => getScore.score).filter(element => {
+    return typeof element === 'number';
+  });
+
+  console.log("valorScore", valorScore)
 
   let initialScore = 0;
   let sumScore = valorScore.reduce((valorAnterior, valorActual) => valorAnterior + valorActual, initialScore);
@@ -38,7 +46,7 @@ function orderAlphabetically(array) {
 
   let showTwentyTitle = newOrder.slice(0, 20);
 
-  // console.log("EXERCICE 4 ->", newOrder.length);
+  console.log("EXERCICE 4 ->", newOrder);
   
   return showTwentyTitle;
   }
@@ -59,23 +67,20 @@ function orderByYear(array) {
     return a.year - b.year;
   });
 
-  console.log("EXERCICE 5 ->", orderMoviesForYear);
+  // console.log("EXERCICE 5 ->", orderMoviesForYear);
   return orderMoviesForYear;
 }
 
 // Exercise 6: Calculate the average of the movies in a category
 function moviesAverageByCategory(array, category) {
 
-  // let getGenre =  array.filter(movieGenre => movieGenre.genre);
+  let getGenre =  array.filter(movieGenre => movieGenre.genre.includes(category));
 
-  // let averageDirector = moviesAverageOfDirector(array, director);
+  let averageScore = moviesAverageOfDirector(getGenre);
 
-
-  // // let reduceGenre = getGenreScore.reduce((valorAnterior, valorActual) => valorAnterior + valorActual);
+  // console.log("EXERCICE 6 ->", averageScore);
   
-
-  // console.log("EXERCICE 6 ->", averageDirector);
-  // return averageDirector;
+  return averageScore;
 }
 
 // Exercise 7: Modify the duration of movies to minutes
